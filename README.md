@@ -23,12 +23,15 @@ I've discovered a (terrible) whitespace hack of using *Vertical Tab* characters 
 
 ## Tron
 
-A *Tron*-like game in just 182 bytes.
+A *Tron*-like game in just 176 bytes.
 
-> ```<body onkeyup=k=[s,-1,-s,1][event.which%4] onload=s=300;p=22650;k=0;b=c.getContext`2d`;setInterval('0<p%s&p<s*s/2&(b[p]^=1)?b.fillRect(p%s,p/s,1,1,p+=k):k=0',9)><button><canvas id=c>```
+> ```<body/onkeyup=k=[s,-1,-s,1][event.which%4] onload=s=300;p=22650;k=0;setInterval('0<p%s&p<s*s/2&(c[p+=k]^=1)?c.getContext`2d`.fillRect(p%s,p/s,1,1):k=0',9)><button><canvas/id=c>```
 
 * [Play Tron](https://danielgjackson.github.io/tinyjs/tron.html) - use arrow keys.
 
+<!--
+data:text/html,<body/onkeyup='k=[s,-1,-s,1][event.which%4]'onload=s=300;p=22650;k=0;setInterval('0<p%s&p<s*s/2&(c[p+=k]^=1)?c.getContext`2d`.fillRect(p%s,p/s,1,1):k=0',9)><button><canvas/id=c>
+-->
 
 ## Etch-a-sketch
 
