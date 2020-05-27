@@ -20,11 +20,6 @@ I've discovered a (terrible) whitespace hack of using *Vertical Tab* characters 
 
   * [Play Snake Micro](https://danielgjackson.github.io/tinyjs/micro.html) - use arrow keys.
 
-
-<body/onkeyup=c.k=c.k?event.which:setInterval('c.width^=0;for(iof[f,...b=b.includes(n=n+[s,31,-s,1][c.k&3]&991)?[n]:[n,...b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>
-
-<body/onkeyup=c.k=c.k?event.which:setInterval('c.width^=0;[f,...b=b.includes(n=n+[s,31,-s,1][c.k&3]&991)?[n]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7));n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>
-
 <!--
 
 When converting this to a `data:` URL, `.map()` removes the need to escape the `for-of` whitespace, but the `=>` arrow function now requires the attribute to be quoted (240 bytes):
