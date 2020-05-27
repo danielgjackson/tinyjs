@@ -4,15 +4,15 @@ Tiny (very hacky) Javascript in HTML pages.
 
 ## Snake
 
-A very mini game of *Snake* in 251 bytes. Use arrow keys, eat the food, avoid your tail! Note that the level wraps-around at the edges.
+A very mini game of *Snake* in 250 bytes. Use arrow keys, eat the food, avoid your tail! Note that the level wraps-around at the edges.
 
   * [Play Snake Mini](https://danielgjackson.github.io/tinyjs/mini.html) - use arrow keys.
 
-> ```<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1?z:0><button><canvas/id=c>```
+> ```<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>```
 
-As it uses a forward-slash as a separator between the element name attributes, this avoids having to URL-encode the whitespace.  I've used this to make a newer-limit-Tweetable 266-byte URL version of the game:
+As it uses a forward-slash as a separator between the element name attributes, this avoids having to URL-encode the whitespace.  I've used this to make a newer-limit-Tweetable 265-byte URL version of the game:
 
-> ```data:text/html,<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1?z:0><button><canvas/id=c>```
+> ```data:text/html,<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>```
 
 I've discovered a (terrible) whitespace hack of using *Vertical Tab* characters instead of spaces: Javascript still sees these as spaces, but HTML doesn't stop processing an unquoted attribute. With this, and other compromises, I've managed to make the HTML version even smaller (just 224 bytes!), but this sacrifices quite a bit of playability.
 
