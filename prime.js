@@ -1,0 +1,1 @@
+for(i=j=0;;)i%j--||(j||console.log(i),j=i++)
