@@ -10,6 +10,8 @@ A mini game of *Snake* in 250 bytes. Use arrow keys, eat the food, avoid your ta
 
 > ```<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>```
 
+See [Snake Mini Explanation](mini-explain.md) for a description of how the code works.
+
 As it uses a forward-slash as a separator between the element name attributes, this avoids having to URL-encode the whitespace.  I've used this to make a 265-byte URL version of the game:
 
 > ```data:text/html,<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>```
