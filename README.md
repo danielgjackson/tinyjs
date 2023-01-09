@@ -68,3 +68,19 @@ Non-`eval()` version (63 bytes):
 
 > ```n=>{for(p=[],i=j=0;n;)i%j--||(j||p.push(i)|n--,j=i++);return p}```
 -->
+
+<!--
+
+C Code (62 bytes):
+
+```c
+main(i,j){for(i=j=0;;)j&&i%j--||(j||printf("%d\n",i),j=i++);}
+```
+
+Test:
+
+```bash
+echo -E 'main(i,j){for(i=j=0;;)j&&i%j--||(j||printf("%d\n",i),j=i++);}' | gcc -x c - && ./a.out
+```
+
+-->
