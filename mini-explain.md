@@ -1,9 +1,9 @@
 # Snake Mini Explanation
 
-This is the full 250 bytes of the [Snake Mini](https://danielgjackson.github.io/tinyjs/#snake) HTML page ([playable](https://danielgjackson.github.io/tinyjs/mini.html)):
+This is the full 249 bytes of the [Snake Mini](https://danielgjackson.github.io/tinyjs/#snake) HTML page ([playable](https://danielgjackson.github.io/tinyjs/mini.html)):
 
 ```html
-<body/onload="setInterval('c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>
+<body/onload="setInterval('c.width=288;[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>
 ```
 
 This page explains how this mess works!
@@ -72,6 +72,8 @@ The second parameter is the interval, and this is used to initialize multiple va
 
 * `b` an array containing the position of each part of the **b**ody of the snake.
 
+Only `s` is required to be `64`, the others benefit from a shorter overall length if initialized to the same value.
+
 When `setInterval()` parses the second parameter as a number, the array is first converted to a string, and `[64].toString()` is `64`, so the update code is called every 64 milliseconds.
 
 
@@ -80,7 +82,7 @@ When `setInterval()` parses the second parameter as a number, the array is first
 The `$UPDATE` code is repeatedly called:
 
 ```javascript
-c.width=288;[f,...b=b.includes(n=n+[s,31,-s,1][k&3]&991)?[f]:[n,...b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991
+c.width=288;[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991
 ```
 
 This is explained below in three parts.
@@ -109,13 +111,13 @@ For each location `i`, the canvas is accessed through its `id` as the global var
 
   * y: `(i>>6)*9` - The location index right-shifted by 6, the top bits of the location.  Scaled to a 9 pixel spacing (one pixel of padding between rows).
 
-`$LOCATIONS` is an array of all of the blocks to render from the game state  (with `$NEW_BODY` as a placeholder):
+`$LOCATIONS` is an array of all of the blocks to render from the game state  (with `$REMAINING_BODY` as a placeholder):
 
 ```javascript
-[f,...b=$NEW_BODY]
+[f,...b=[n,...$REMAINING_BODY]]
 ```
 
-This is the `f` food location, and the contents of the `b` updated body location.  The body location is first updated to `$NEW_BODY` with:
+This is the `f` food location, and the contents of the `b` updated body location.  The body location is first updated to the `n` next head location and the `$REMAINING_BODY` with:
 
 1. (With `$NEW_LOCATION` as a placeholder):
 
@@ -135,19 +137,17 @@ This is the `f` food location, and the contents of the `b` updated body location
 
 
 2. ```javascript
-    ?[f]
+    ?[]
     ```
 
-    If the body parts already included the next location, the snake has crashed into itself, and the `$NEW_BODY` evaluates to just the location of the food `f`.  This will cause...
-
-    **TODO: Finish explanation - can't remember why `f` was used.  I think it was an attempt to trigger immediate food consumption and relocation, but that actually only matches on `n`?!**
+    If the body parts already included the next location, the snake has crashed into itself, and the `$REMAINING_BODY` evaluates to nothing else (the snake will reset to only contain the head).  
 
 
 3. ```javascript
-    :[n,...b]
+    :b
     ```
 
-    If the body parts did not include the new location, the `$NEW_BODY` evaluates to the next location `n` prepended to the remainder of the `b` body parts -- growing the parts by one segment (for now, as this will be trimmed if the food is not eaten).
+    If the body parts did not include the new location, the `$REMAINING_BODY` evaluates to the remainder of the `b` body parts.  The result is that the `n` next head position is prepended to the body parts, growing them by one segment (for now, this will be trimmed if the food is not eaten).
 
 
 ### Part 3: Update snake and food
