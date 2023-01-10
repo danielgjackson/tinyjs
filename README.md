@@ -16,27 +16,26 @@ As it uses a forward-slash as a separator between the element name attributes, t
 
 > ```data:text/html,<body/onload="setInterval('c.width=288;[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]].map(i=>c.getContext`2d`.fillRect(i%s*9,(i>>6)*9,8,8));n^f?b.pop():f=~f*89&991',b=[n=f=k=s=64])"onkeydown=k^=(z=event.which^k)&1&&z><button><canvas/id=c>```
 
-As the above uses `map()` and an arrow function `=>`, the angle-bracket means the attribute must be quoted.  A `for of` could be used instead, but the required whitespace would also usually force the attribute to be quoted.  I've discovered a (terrible?) whitespace hack of using a *Vertical Tab* character (ASCII 11 / 0x0B) instead of a space: Javascript still sees this as whitespace, but HTML doesn't stop processing an unquoted attribute.  Using this, and several other compromises, I've managed to make the HTML version even smaller (just 222 bytes!), but this sacrifices quite a bit of playability.
+As the above uses `map()` and an arrow function `=>`, the angle-bracket means the attribute must be quoted.  A `for of` could be used instead, but the required whitespace would also usually force the attribute to be quoted.  I've discovered a (terrible?) whitespace hack of using a *Vertical Tab* character (ASCII 11 / 0x0B) instead of a space: Javascript still sees this as whitespace, but HTML doesn't stop processing an unquoted attribute.  Using this, and several other compromises, I've managed to make the HTML version even smaller (just 220 bytes!), but this sacrifices quite a bit of playability.
 
-> ```<body/onkeyup=c.k=c.k?event.which:setInterval('c.width^=0;for(iof[f,...b=[n,...b.includes(n=n+[s,31,-s,1][c.k&3]&991)?[]:b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>```
+> ```<body/onkeyup=k=event.which;c.a||=setInterval('c.width^=0;for(iof[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>```
 
-  * [Play Snake Micro](https://danielgjackson.github.io/tinyjs/micro.html) - use arrow keys.
+  * [Play Snake Micro](https://danielgjackson.github.io/tinyjs/micro.html) - press a key to start, use arrow keys.
 
-When converting this to a `data:` URL, the whitespace hack requires a URL-encoding, so it is no longer smaller than using a `.map()` and quoting the attribute (239 bytes):
+When converting this to a `data:` URL, the whitespace hack requires a URL-encoding, so it is no longer smaller than using a `.map()` and quoting the attribute (237 bytes):
 
-> ```data:text/html,<body/onkeyup=c.k=c.k?event.which:setInterval('c.width^=0;for(i%0Bof[f,...b=[n,...b.includes(n=n+[s,31,-s,1][c.k&3]&991)?[]:b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>```
-
+> ```data:text/html,<body/onkeyup=k=event.which;c.a||=setInterval('c.width^=0;for(i%0Bof[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>```
 
 ## Tron
 
-A *Tron*-like game in just 172 bytes.
+A *Tron*-like game in just 169 bytes.
 
-> ```<body/onkeyup=k=[s=300,-1,-s,1,c.z=c.z||setInterval('0<p%s&p<s*s/2&(c[p+=k]^=1)?c.getContext`2d`.fillRect(p%s,p/s,1,1):k=0',9,p=22650)][event.which%4]><button><canvas/id=c>```
+> ```<body/onkeyup=k=[s=300,-1,-s,1,c.z||=setInterval('0<p%s&p<s*s/2&(c[p+=k]^=1)?c.getContext`2d`.fillRect(p%s,p/s,1,1):k=0',9,p=22650)][event.which%4]><button><canvas/id=c>```
 
 * [Play Tron](https://danielgjackson.github.io/tinyjs/tron.html) - use arrow keys.
 
 <!--
-data:text/html,<body/onkeyup=k=[s=300,-1,-s,1,c.z=c.z||setInterval('0<p%s&p<s*s/2&(c[p+=k]^=1)?c.getContext`2d`.fillRect(p%s,p/s,1,1):k=0',9,p=22650)][event.which%4]><button><canvas/id=c>
+data:text/html,<body/onkeyup=k=[s=300,-1,-s,1,c.z||=setInterval('0<p%s&p<s*s/2&(c[p+=k]^=1)?c.getContext`2d`.fillRect(p%s,p/s,1,1):k=0',9,p=22650)][event.which%4]><button><canvas/id=c>
 -->
 
 ## Etch-a-sketch
