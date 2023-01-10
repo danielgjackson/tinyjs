@@ -82,3 +82,18 @@ echo -E 'main(i,j){for(i=j=0;;)j&&i%j--||(j||printf("%d\n",i),j=i++);}' | gcc -x
 ```
 
 -->
+
+
+<!--
+
+Braille character mapping
+
+s=0xff;
+// 01
+// 23
+// 45
+// 67
+
+String.fromCharCode('0b'+[...'76531420'].map(i=>(s>>i)&1).join``|10240)
+
+-->
