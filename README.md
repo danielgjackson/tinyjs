@@ -22,9 +22,14 @@ As the above uses `map()` and an arrow function `=>`, the angle-bracket means th
 
   * [Play Snake Micro](https://danielgjackson.github.io/tinyjs/micro.html) - press a key to start, use arrow keys.
 
-When converting this to a `data:` URL, the whitespace hack requires a URL-encoding, so it is no longer smaller than using a `.map()` and quoting the attribute (237 bytes):
+When converting this to a `data:` URL, the whitespace hack would require a `%0B` three-byte URL-encoding, but the whitespace be eliminated to save one byte by swapping with `for((i)of[...` (236 bytes):
 
-> ```data:text/html,<body/onkeyup=k=event.which;c.a||=setInterval('c.width^=0;for(i%0Bof[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>```
+> ```data:text/html,<body/onkeyup=k=event.which;c.a||=setInterval('c.width^=0;for((i)of[f,...b=[n,...b.includes(n=n+[s,31,-s,1][k&3]&991)?[]:b]])c.getContext`2d`.fillRect(i%s*8,i/s<<3,7,7);n^f?b.pop():f=~f*89&991',b=[n=f=s=64])><canvas/id=c>```
+
+<!--
+Alternative version [alt.html](alt.html) using a 'time-based' approach where the history is stored by location with the value being the time the segment was added.  Only render segments that are within 'current length' time.  Intersection just resets the length.
+-->
+
 
 ## Tron
 
@@ -88,12 +93,19 @@ echo -E 'main(i,j){for(i=j=0;;)j&&i%j--||(j||printf("%d\n",i),j=i++);}' | gcc -x
 
 Braille character mapping
 
-s=0xff;
+d=0x99;
 // 01
 // 23
 // 45
 // 67
 
-String.fromCharCode('0b'+[...'76531420'].map(i=>(s>>i)&1).join``|10240)
+// Map to Braille character
+String.fromCharCode((t=10240,[...'02413567'].map((s,i)=>t+=(d>>s&1)<<i),t))
+String.fromCharCode('0b'+[...'76531420'].map(s=>d>>s&1).join``|10240)
+
+// Map to Braille HTML entity (excluding trailing semicolon)
+t=10240,[...'02413567'].map((s,i)=>t+=(d>>s&1)<<i),'&#'+t
+'&#'+('0b'+[...'76531420'].map(s=>d>>s&1).join``|10240)
+`&#${'0b'+[...'76531420'].map(s=>d>>s&1).join``|10240}`
 
 -->
