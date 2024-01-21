@@ -95,6 +95,8 @@ A 1x1 pixel .BMP image in 30 bytes: [1x1.bmp](https://raw.githubusercontent.com/
 
 As a *data:* URI: `data:image/bmp;base64,Qk0eAAAAAAAAABoAAAAMAAAAAQABAAEAGAD///8A`
 
+> ...Ah, I was beaten to this a long time ago!: [github.com/mathiasbynens/small](https://github.com/mathiasbynens/small).
+
 <!--
 
 Braille character mapping
