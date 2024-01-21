@@ -89,6 +89,12 @@ echo -E 'main(i,j){for(i=j=0;;)j&&i%j--||(j||printf("%d\n",i),j=i++);}' | gcc -x
 -->
 
 
+## Tiny BMP image
+
+A 1x1 pixel .BMP image in 30 bytes: [1x1.bmp](1x1.bmp).  Uses the basic `BITMAPCOREHEADER` header, in (a possibly not really valid for that format, but seems to work) 24 bits-per-pixel.
+
+As a *data:* URI: `data:image/bmp;base64,Qk0eAAAAAAAAABoAAAAMAAAAAQABAAEAGAD///8A`
+
 <!--
 
 Braille character mapping
